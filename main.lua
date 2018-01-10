@@ -1,12 +1,6 @@
 
 require("lib.lib")
 
-print("heey, I haz coding skills")
-
-
-
-
-
-
-
+local game = require("screens.game.game")
+game.new()
 

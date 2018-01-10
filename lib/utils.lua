@@ -1,7 +1,7 @@
 
-local utils = {}
+local Utils = {}
 
-function utils.setUtils()
+function Utils.setUtils()
     --stackoverflow:
     --https://stackoverflow.com/questions/9145432/load-lua-files-by-relative-path
     function relativeRequire(path, ...)
@@ -11,6 +11,6 @@ function utils.setUtils()
     end
 end
 
-utils.setUtils()
+Utils.setUtils()
 
-return utils
+return Utils
