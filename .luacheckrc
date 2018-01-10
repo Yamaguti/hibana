@@ -8,7 +8,11 @@ globals = {
     "Runtime",
 
     --lib
-    "relativeRequire"
+    "relativeRequire",
+    "screenWidth",
+    "screenHeight",
+    "centerX",
+    "centerY",
 }
 
 ignore = {
