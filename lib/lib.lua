@@ -1,4 +1,5 @@
 
 require("lib.utils")
-require("lib.core")
-require("lib.init")
+
+relativeRequire("core", ...)
+relativeRequire("init", ...)
