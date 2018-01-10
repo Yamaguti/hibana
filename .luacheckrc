@@ -6,6 +6,9 @@ globals = {
     "graphics",
     "native",
     "Runtime",
+
+    --lib
+    "relativeRequire"
 }
 
 ignore = {
