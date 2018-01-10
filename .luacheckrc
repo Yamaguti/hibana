@@ -9,10 +9,16 @@ globals = {
 
     --lib
     "relativeRequire",
+
+    --positioning
     "screenWidth",
     "screenHeight",
     "centerX",
     "centerY",
+    "screenLeft",
+    "screenRight",
+    "screenTop",
+    "screenBottom",
 }
 
 ignore = {

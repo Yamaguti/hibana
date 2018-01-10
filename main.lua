@@ -1,6 +1,6 @@
 
 require("lib.lib")
 
-local game = require("screens.game.game")
-game.new()
+local Game = require("screens.game.game")
+Game.new()
 

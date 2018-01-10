@@ -12,6 +12,11 @@ local function setDimensionGlobals()
 
     centerX      = display.contentCenterX
     centerY      = display.contentCenterY
+
+    screenLeft   = 0
+    screenRight  = screenLeft + screenWidth
+    screenTop    = 0
+    screenBottom = screenTop + screenHeight
 end
 
 setDimensionGlobals()
