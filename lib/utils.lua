@@ -7,4 +7,6 @@ function utils.setUtils()
     end
 end
 
+utils.setUtils()
+
 return utils

@@ -1,6 +1,4 @@
 
-local utils = require("lib.utils")
-utils.setUtils()
-
+require("lib.utils")
 require("lib.core")
 require("lib.init")
