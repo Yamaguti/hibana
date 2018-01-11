@@ -2,21 +2,20 @@
 require("lib.utils")
 
 
--- easy global screen dimensions
+--- Set global for easy access to screen dimensions. Refs from:
+-- https://docs.coronalabs.com/api/library/display/contentCenterX.html
+-- https://docs.coronalabs.com/api/library/display/contentWidth.html
 local function setDimensionGlobals()
-    -- https://docs.coronalabs.com/api/library/display/contentCenterX.html
-    -- https://docs.coronalabs.com/api/library/display/contentWidth.html
-
-    screenWidth  = display.contentWidth
-    screenHeight = display.contentHeight
-
     centerX      = display.contentCenterX
     centerY      = display.contentCenterY
 
-    screenLeft   = 0
-    screenRight  = screenLeft + screenWidth
-    screenTop    = 0
-    screenBottom = screenTop + screenHeight
+    screenWidth  = display.actualContentWidth
+    screenHeight = display.actualContentHeight
+
+    screenLeft   = centerX - screenWidth  * 0.5
+    screenRight  = centerX + screenWidth  * 0.5
+    screenTop    = centerY - screenHeight * 0.5
+    screenBottom = centerY + screenHeight * 0.5
 end
 
 setDimensionGlobals()
