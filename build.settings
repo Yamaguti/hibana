@@ -1,5 +1,6 @@
---- Reference in link:
+--- build.settings references in link:
 -- https://docs.coronalabs.com/guide/distribution/buildSettings/index.html
+
 _G.settings = {
     orientation = {
         default   = "portrait",
