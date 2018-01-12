@@ -1,0 +1,80 @@
+--- Reference in link:
+-- https://docs.coronalabs.com/guide/distribution/buildSettings/index.html
+_G.settings = {
+    orientation = {
+        default   = "portrait",
+        supported = {
+            "portrait",
+            "portraitUpsideDown",
+        },
+    },
+
+    iphone = {
+        plist = {
+            CFBundleIconFile = "Icon.png",
+            CFBundleIconFiles = {
+                "Icon.png",
+                "Icon@2x.png",
+                "Icon-60.png",
+                "Icon-72.png",
+                "Icon-76.png",
+                "Icon-120.png",
+                "Icon-144.png",
+                "Icon-152.png",
+            },
+            UIPrerenderedIcon = true,
+            UIStatusBarHidden = true,
+            UIApplicationExitsOnSuspend = false,
+            MinimumOSVersion = "6.0",
+            CFBundleURLTypes = {
+                {
+                    CFBundleURLSchemes = {
+                        "fb337258172333867",
+                    },
+                },
+            },
+            FacebookAppID = "337258172333867",
+        },
+    },
+
+    android = {
+        usesPermissions = {
+            "com.android.vending.BILLING",
+            "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE",
+        },
+        googlePlayGamesAppId = "411333139676"
+    },
+
+    plugins = {
+        ["CoronaProvider.native.popup.activity"] = {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = {
+                iphone = true,
+                ["iphone-sim"] = true,
+            },
+        },
+        ["CoronaProvider.native.popup.social"] = {
+            publisherId = "com.coronalabs",
+        },
+        facebook = {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = {
+                iphone = true,
+                ["iphone-sim"] = true,
+            },
+        },
+        ["plugin.notifications"] = {
+            publisherId = "com.coronalabs"
+        },
+        ["CoronaProvider.gameNetwork.google"] = {
+            --required!
+            publisherId = "com.coronalabs",
+            supportedPlatforms = { ["android"] = true },
+        },
+        ["CoronaProvider.gameNetwork.apple"] = {
+            publisherId = "com.coronalabs",
+            supportedPlatforms = { iphone=true, ["iphone-sim"]=true },
+        },
+    },
+}
