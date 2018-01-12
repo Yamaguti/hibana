@@ -1,22 +1,8 @@
 
-local Cell = relativeRequire("cell", ...)
+local Grid = relativeRequire("grid", ...)
 local Game = {}
 
 
-
-local function populateGrid(game, grid)
-    for i = screenLeft, screenRight, (Cell.squareSize+5) do
-        grid[i] = {}
-        for j = screenTop, screenBottom, (Cell.squareSize+5) do
-            local cell = Cell.new()
-            cell.x = i
-            cell.y = j
-            grid[i][j] = cell
-
-            game:insert(cell)
-        end
-    end
-end
 
 
 function Game.new()
@@ -24,11 +10,15 @@ function Game.new()
 
     ----
 
-    local grid = {}
-    populateGrid(game, grid)
+    local grid = Grid.new()
     game.grid = grid
+    grid:insertChildrenIn(game)
 
     ----
+
+    timer.performWithDelay(500, function()
+        grid:computeNextStep()
+    end, 0)
 
     ----
 
