@@ -1,3 +1,6 @@
 
-local Utils = require("lib.utils")
-Utils.setUtils()
+require("lib.lua.init")
+
+relativeRequire("core", ...)
+
+relativeRequire("init", ...)
