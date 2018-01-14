@@ -9,6 +9,7 @@ globals = {
 
     --lib
     "relativeRequire",
+    "printTable",
 
     --positioning
     "screenWidth",

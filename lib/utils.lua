@@ -1,11 +1,13 @@
 
-local Utils = {}
-local Private = {}
+local launchArgs = ...
+local Utils      = {}
+local Private    = {}
 
 
 
 -- Private Methods
 
+-- Require utils
 function Private.processPath(pathString)
     local goBacks = 0
 
@@ -34,17 +36,20 @@ end
 function Utils.setUtils()
     --stackoverflow:
     --https://stackoverflow.com/questions/9145432/load-lua-files-by-relative-path
-    function relativeRequire(path, ...)
-        local pathOfThisFile = ...
-
+    function relativeRequire(path, pathOfThisFile)
         local goBacks, processedPath = Private.processPath(path)
         local folderOfThisFile = pathOfThisFile:match("(.-)[^%.]+$")
 
         local folder = Private.processFolder(folderOfThisFile, goBacks)
         return require(folder .. processedPath)
     end
+
+    relativeRequire("utils.serializetable", launchArgs)
+    function printTable(...)
+        print(Utils.serializeTable(...))
+    end
 end
 
-Utils.setUtils()
+
 
 return Utils

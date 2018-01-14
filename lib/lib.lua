@@ -1,5 +1,5 @@
 
-require("lib.utils")
+require("lib.bootstrap")
 
 relativeRequire("core", ...)
 relativeRequire("init", ...)

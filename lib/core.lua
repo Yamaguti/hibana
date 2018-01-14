@@ -1,7 +1,4 @@
 
-require("lib.utils")
-
-
 --- Set global for easy access to screen dimensions. Refs from:
 -- https://docs.coronalabs.com/api/library/display/contentCenterX.html
 -- https://docs.coronalabs.com/api/library/display/contentWidth.html
