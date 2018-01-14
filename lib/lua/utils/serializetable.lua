@@ -1,7 +1,3 @@
-local Utils   = relativeRequire("../utils", ...)
-
---- PrintTable Utils
--- http://lua-users.org/wiki/TableSerialization
 --[[
    Author: Julio Manuel Fernandez-Diaz
    Date:   January 12, 2007
@@ -112,4 +108,7 @@ end
 ---
 ---
 
+--- PrintTable Utils
+-- http://lua-users.org/wiki/TableSerialization
+local Utils   = relativeRequire("../utils", ...)
 Utils.serializeTable = table_show

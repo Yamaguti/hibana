@@ -1,3 +1,5 @@
 
-local Utils = require("lib.lua.utils")
+require("lib.lua.relativerequire")
+
+local Utils = relativeRequire("utils", ...)
 Utils.setUtils()
