@@ -2,7 +2,7 @@
 local Private = {}
 local Button = {}
 
-function Private.touch(event)
+function Private.touch(button, event)
     local phase = event.phase
 
     if phase == "ended" then
