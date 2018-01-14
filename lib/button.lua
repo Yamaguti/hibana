@@ -1,6 +1,9 @@
 
+local Table   = require("lib.lua.table")
 local Private = {}
-local Button = {}
+local Button  = {}
+
+
 
 function Private.touchIsInBounds(button, touchEvent)
     local touchArea = button._touchArea
@@ -12,23 +15,53 @@ function Private.touchIsInBounds(button, touchEvent)
         button.config.width*0.5, button.config.height*0.5
 
     return -halfHeight <= localY and localY <= halfHeight
-       and  -halfWidth <= localX and localX <= halfWidth
+       and -halfWidth  <= localX and localX <= halfWidth
 end
 
-
-function Private.touch(button, event)
-    local phase = event.phase
+function Private.touch(touchArea, event)
+    local phase  = event.phase
+    local button = touchArea._button
 
     if phase == "began" then
         display.getCurrentStage():setFocus(touchArea)
+        button.isTouchInBounds = true
+        button.touchStarted    = true
+
         Private.scaleContentsDown(button)
 
     elseif phase == "moved" then
+        if not button.touchStarted then
+            local newEvent = Table.shallowCopy(event)
+            newEvent.phase = "began"
+            touchArea:dispatchEvent(newEvent)
+        end
 
-    elseif phase == "ended" then
+        local isTouchCurrenlyInBounds   = Private.touchIsInBounds(button, event)
+        local isTouchPreviouslyInBounds = button.isTouchInBounds
+
+        if isTouchCurrenlyInBounds then
+            if not isTouchPreviouslyInBounds then
+                Private.scaleContentsDown(button)
+            end
+            button.isTouchInBounds = true
+        else
+            if isTouchPreviouslyInBounds then
+                Private.scaleContentsUp(button)
+            end
+            button.isTouchInBounds = false
+        end
+
+    elseif phase == "ended"
+        or phase == "cancelled"
+    then
         display.getCurrentStage():setFocus(nil)
         Private.scaleContentsUp(button)
-        event.target:onRelease()
+        button.isTouchInBounds = nil
+        button.touchStarted    = nil
+
+        if Private.touchIsInBounds(button, event) then
+            button:onRelease()
+        end
     end
 
     return true
@@ -58,27 +91,30 @@ function Button.new(config)
 
     ----
 
-    local touchArea = display.newRect(0,
-                                      0,
-                                      config.width or contents.width,
-                                      config.height or contents.height
-                                     )
+    local touchArea =
+        display.newRect(0,
+         0,
+         config.width or contents.width,
+         config.height or contents.height
+        )
     touchArea:setFillColor(0, 0, 0.5, 0.5)
     touchArea.isVisible = false
+    touchArea.isHitTestable = true
     button:insert(touchArea)
     button._touchArea = touchArea
+    touchArea._button = button
 
     config.width  = touchArea.width
     config.height = touchArea.height
 
     ----
 
-    button.touch = Private.touch
+    touchArea.touch  = Private.touch
     button.onRelease = config.onRelease
 
     ----
 
-    button:addEventListener("touch")
+    touchArea:addEventListener("touch")
 
     return button
 end
