@@ -1,11 +1,11 @@
 
-relativeRequire("utils.serializetable", ...)
-
-local Utils = {}
+local filePath = ...
+local Utils    = {}
 
 
 
 function Utils.setUtils()
+    relativeRequire("utils.serializetable", filePath)
     function printTable(...)
         print(Utils.serializeTable(...))
     end
