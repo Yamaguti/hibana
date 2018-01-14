@@ -24,7 +24,10 @@ function Game.new()
             return rect
         end,
         onRelease = function ()
-            print("aha")
+            local amount = math.random(200)
+            for _ = 1, amount do
+                grid[math.random(1, #grid)][math.random(1, #grid[1])]:turnOn()
+            end
         end
     })
     button.x = centerX
