@@ -1,7 +1,7 @@
 
 relativeRequire("utils.serializetable", ...)
 
-local Utils      = {}
+local Utils = {}
 
 
 
